@@ -12,10 +12,10 @@ Hệ thống sử dụng 2 sheets riêng biệt để quản lý tác vụ và d
 
 ### Sheet: `Log` (Output)
 - **Cột A:** Keyword (Tiếng Việt).
-- **Cột B:** Nguồn Video (Douyin/Xiaohongshu).
-- **Cột C:** Link Shopee Gốc (Tìm từ Google Lens).
-- **Cột D:** Link Affiliate (Rút gọn từ Shopee Affiliate).
-- **Cột E:** Link Google Drive (Video sau khi upload).
+- **Cột B:** Link Video Gốc (Dùng để kiểm tra trùng lặp).
+- **Cột C:** Nguồn Nền tảng (Douyin/Xiaohongshu).
+- **Cột D:** Link Shopee Gốc (Tìm từ Google Lens).
+- **Cột E:** Link Affiliate (Rút gọn từ Shopee Affiliate).
 - **Cột F:** Trạng thái (Thành công/Thất bại).
 
 ---
@@ -36,6 +36,7 @@ Hệ thống sử dụng 2 sheets riêng biệt để quản lý tác vụ và d
 - [ ] **Module Crawl:**
     - Search theo keyword tiếng Trung.
     - Thu thập link video & lọc video < 40s.
+    - **Kiểm tra trùng lặp:** Đối chiếu link video với Sheet `Log` để đảm bảo không xử lý lại video cũ.
 - [ ] **VideoProcessor (FFmpeg):**
     - Tải video vào thư mục tạm.
     - Trích xuất 3-5 ảnh tiêu biểu (screenshot).
@@ -52,9 +53,8 @@ Hệ thống sử dụng 2 sheets riêng biệt để quản lý tác vụ và d
     - Dán link vào trang quản trị Affiliate -> Lấy link rút gọn.
 - [ ] **Logic tối ưu:** Ưu tiên Shopee Mall/Yêu thích.
 
-### Sprint 4: Lưu trữ & Hoàn thiện
-*Mục tiêu: Backup video và tối ưu hệ thống.*
-- [ ] **GoogleDriveService:** Upload video & lấy link Public.
+### Sprint 4: Hoàn thiện & Tối ưu
+*Mục tiêu: Kết nối quy trình và xử lý các kịch bản thực tế.*
 - [ ] **Pipeline Integration:** Kết nối toàn bộ quy trình, xử lý Retry-logic.
 - [ ] **Antidetect:**
     - Randomize User-Agent.

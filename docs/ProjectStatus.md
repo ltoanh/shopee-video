@@ -5,12 +5,11 @@ Dự án là một **C# Worker Service** chạy ngầm, tự động hóa quy tr
 
 ### Quy trình cốt lõi:
 1. **Lấy Keyword**: Đọc từ Google Sheets (ngẫu nhiên để đa dạng hóa).
-2. **Crawl Video**: Tìm kiếm và tải video từ Douyin/Xiaohongshu dựa trên keyword tiếng Trung.
+2. **Crawl Video**: Tìm kiếm và tải video từ Douyin/Xiaohongshu dựa trên keyword tiếng Trung. **Kiểm tra trùng lặp** bằng cách đối chiếu link video với các bản ghi cũ trong sheet `Log`.
 3. **Xử lý Video**: Kiểm tra thời lượng và trích xuất hình ảnh đặc trưng bằng FFmpeg.
 4. **Tìm sản phẩm (Pending)**: Sử dụng Google Lens để tìm link Shopee tương ứng từ hình ảnh.
 5. **Tạo Link Affiliate (Pending)**: Tự động đăng nhập Shopee Affiliate Console để chuyển đổi link gốc thành link affiliate.
-6. **Lưu trữ (Pending)**: Upload video lên Google Drive.
-7. **Báo cáo**: Ghi log kết quả và trạng thái vào Google Sheets.
+6. **Báo cáo**: Ghi log kết quả, link video gốc và trạng thái vào Google Sheets.
 
 ---
 
@@ -30,6 +29,7 @@ Dự án là một **C# Worker Service** chạy ngầm, tự động hóa quy tr
 - [x] Tích hợp Microsoft Playwright.
 - [x] Cấu hình `BrowserProfile` để duy trì session (tránh đăng nhập lại nhiều lần).
 - [x] Cơ chế Stealth để tránh bị phát hiện (AddInitScript).
+- [ ] Logic kiểm tra trùng lặp video trước khi tải (Dựa trên Sheet `Log`).
 - [ ] Logic tìm kiếm và tải video từ **Douyin** (Xử lý intercept media URL).
 - [ ] Logic tìm kiếm và tải video từ **Xiaohongshu** (Xử lý intercept media URL).
 
@@ -48,13 +48,13 @@ Dự án là một **C# Worker Service** chạy ngầm, tự động hóa quy tr
     - [ ] Tự động dán link và lấy link rút gọn (Custom Link).
     - [ ] Xử lý lọc Shop Mall/Shop yêu thích.
 
-### Sprint 4: Lưu trữ & Hoàn thiện
-- [ ] **Google Drive Service**: Tự động upload video đã tải lên Drive và lấy link chia sẻ.
-- [ ] **Xiaohongshu Scraper**: Hoàn thiện logic crawl cho nền tảng Xiaohongshu (hiện tại mới có Douyin).
+### Sprint 4: Hoàn thiện & Tối ưu
+- [ ] **Hoàn thiện Xiaohongshu Scraper**: Đảm bảo logic crawl ổn định cho cả hai nền tảng.
 - [ ] **Cải thiện độ ổn định**:
     - [ ] Xử lý Captcha (nếu có) hoặc thêm delay mô phỏng người dùng thật.
     - [ ] Retry logic khi crawl thất bại.
-    - [ ] Dọn dẹp thư mục `temp_videos` và `temp_images` sau khi xử lý xong.
+    - [ ] Dọn dẹp thư mục `temp_videos` và `temp_images` ngay sau khi xử lý xong mỗi video.
+- [ ] **End-to-End Testing**: Kiểm tra toàn bộ luồng từ Keyword đến Link Affiliate.
 
 ---
 
