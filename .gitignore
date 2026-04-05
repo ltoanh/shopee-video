@@ -1,0 +1,11 @@
+.vs/
+bin/
+obj/
+Properties/
+BrowserProfile/
+logs/
+# Additional common ignores for C# if desired, but following user's specific list:
+temp_images/
+temp_videos/
+google-sheets-cridential.json
+.DS_Store
